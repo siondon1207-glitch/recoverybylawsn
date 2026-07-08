@@ -1,23 +1,682 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+ <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "2026년 개인회생금액 산정 시 가장 중요한 기준은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "개인회생금액 중 매월 납부하는 변제금은 신청인의 월 평균 소득에서 법원이 인정하는 가구원수별 최저생계비를 차감한 가용소득으로 결정됩니다. 따라서 소득 증빙과 함께 추가 생계비 인정을 위한 소명 자료를 충실히 준비하는 것이 핵심입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "법률 대리인 수임료는 대략 얼마 정도가 적정한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "개인회생 대리인 수임료는 부채의 총액, 채권자 수, 송달료 및 법원 예납금 포함 여부에 따라 달라집니다. 통상적으로 150만 원에서 250만 원 사이가 평균적인 가격이며, 이를 합리적으로 나누어 낼 수 있는 분납 분할 혜택을 제공하는 전문 업체를 비교하여 선택하는 것이 유리합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "인터넷이나 커뮤니티에서 제공하는 수임료 현금지원이나 사은품 혜택은 안전한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "최근 온라인 광고나 다양한 사이트에서 상품권 증정, 현금지원 등 파격적인 혜택을 내세우며 신규 계약을 유도하는 경우가 있으나, 무조건 저렴한곳이나 사은품을 강조하는 곳보다는 변제계획안을 끝까지 책임지고 면책 결정까지 안전하게 도달할 수 있는 신뢰성 있는 전문 법률사무소인지를 먼저 확인하셔야 피해를 예방할 수 있습니다."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --primary-color: #2C3E50; 
+            --secondary-color: #0F766E; 
+            --accent-color: #9F1239; 
+            --text-color: #334155; 
+            --bg-light: #FAF9F6; 
+            --bg-card: #FFFFFF;
+            --border-color: #E2E8F0;
+            --highlight-color: #F8FAFFCB;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-light); 
+            color: var(--text-color); 
+            line-height: 1.8; 
+            font-weight: 400; 
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
+        
+        header { 
+            background-color: var(--bg-card); 
+            padding: 30px 0; 
+            text-align: center; 
+            border-bottom: 4px solid var(--secondary-color); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 2.2em; 
+            color: var(--primary-color); 
+            font-weight: 900; 
+            word-break: keep-all;
+        }
+        header h1 a { 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        .hero { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495E 100%); 
+            color: #fff; 
+            text-align: center; 
+            padding: 60px 20px; 
+        }
+        .hero h2 { 
+            font-size: 2.5em; 
+            margin-bottom: 15px; 
+            font-weight: 900; 
+            word-break: keep-all;
+        }
+        .hero p { 
+            font-size: 1.2em; 
+            margin-bottom: 30px; 
+            font-weight: 400; 
+            opacity: 0.9;
+        }
+        
+        .calculator-box { 
+            background-color: var(--bg-card); 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12); 
+            margin-top: -40px; 
+            position: relative; 
+            z-index: 10; 
+            border-top: 5px solid var(--secondary-color); 
+            color: var(--text-color);
+        }
+        .calculator-box h3 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            margin-top: 0;
+            margin-bottom: 25px; 
+            font-size: 1.8em; 
+            font-weight: 700; 
+        }
+        .calculator-box label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+            color: var(--primary-color); 
+            font-size: 1em; 
+        }
+        .calculator-box input, .calculator-box select { 
+            width: 100%; 
+            padding: 12px 15px; 
+            margin-bottom: 20px; 
+            border: 1px solid var(--border-color); 
+            border-radius: 6px; 
+            box-sizing: border-box; 
+            font-size: 1em; 
+            background-color: #FFF;
+        }
+        .form-row { 
+            display: flex; 
+            gap: 15px; 
+        }
+        .form-column { 
+            flex: 1; 
+        }
+        
+        .calc-btn { 
+            background-color: var(--secondary-color); 
+            color: #fff; 
+            padding: 15px; 
+            font-size: 1.2em; 
+            font-weight: 700; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            width: 100%;
+            transition: background-color 0.2s; 
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2);
+        }
+        .calc-btn:hover { 
+            background-color: #0d5e57; 
+        }
+
+        .calc-result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #F0FDFA;
+            border: 1px solid #CCFBF1;
+            border-radius: 6px;
+            display: none;
+        }
+        .calc-result h4 {
+            margin: 0 0 10px 0;
+            color: var(--secondary-color);
+            font-size: 1.2em;
+        }
+        .calc-result p {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+        .calc-result span {
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .content-section { 
+            background-color: var(--bg-card); 
+            padding: 50px 30px; 
+            margin-top: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
+        }
+        .content-section h2 { 
+            font-size: 2em; 
+            color: var(--primary-color); 
+            border-bottom: 2px solid var(--border-color); 
+            padding-bottom: 12px; 
+            margin-top: 0;
+            margin-bottom: 30px; 
+            font-weight: 900; 
+        }
+        .content-section h3 { 
+            font-size: 1.4em; 
+            color: var(--secondary-color); 
+            margin-top: 35px; 
+            margin-bottom: 15px; 
+            border-left: 4px solid var(--accent-color); 
+            padding-left: 12px; 
+            font-weight: 700; 
+        }
+        .content-section p { 
+            font-size: 1.05em; 
+            margin-bottom: 20px; 
+            line-height: 1.8; 
+            text-align: justify;
+        }
+        
+        .info-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px;
+            margin-top: 30px; 
+        }
+        .info-grid .grid-item { 
+            flex: 1;
+            min-width: 280px;
+            padding: 25px; 
+            background-color: var(--highlight-color); 
+            border-radius: 8px; 
+            border: 1px solid var(--border-color);
+        }
+        .info-grid .grid-item h4 { 
+            font-size: 1.2em; 
+            color: var(--primary-color); 
+            margin-top: 0; 
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .data-visualization { 
+            margin: 40px 0; 
+            padding: 25px; 
+            background-color: #F8FAFC; 
+            border-radius: 8px; 
+            border: 1px solid var(--border-color); 
+        }
+        .data-visualization h4 { 
+            text-align: center; 
+            color: var(--primary-color); 
+            margin-top: 0;
+            margin-bottom: 20px; 
+            font-size: 1.3em;
+        }
+        .data-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            text-align: center; 
+            background-color: #FFF;
+        }
+        .data-table th, .data-table td { 
+            border: 1px solid var(--border-color); 
+            padding: 12px; 
+            font-size: 0.95em; 
+        }
+        .data-table th { 
+            background-color: var(--primary-color); 
+            color: #FFF; 
+            font-weight: 700; 
+        }
+        .data-table tr:nth-child(even) { 
+            background-color: #F1F5F9; 
+        }
+        
+        .faq-list {
+            margin-top: 25px;
+        }
+        .faq-item { 
+            border-bottom: 1px solid var(--border-color); 
+            padding: 20px 0; 
+        }
+        .faq-item h4 { 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            font-size: 1.1em; 
+            color: var(--primary-color); 
+            font-weight: 700; 
+            margin: 0;
+        }
+        .faq-item h4::after { 
+            content: '+'; 
+            font-size: 1.2em; 
+            color: var(--secondary-color); 
+        }
+        .faq-item.active h4::after { 
+            content: '-'; 
+        }
+        .faq-item p { 
+            display: none; 
+            padding: 15px 10px 5px; 
+            color: #475569; 
+            margin: 10px 0 0 0;
+            font-size: 0.95em;
+            background-color: var(--highlight-color);
+            border-radius: 4px;
+        }
+        .faq-item.active p { 
+            display: block; 
+        }
+        
+        .keyword-list { 
+            list-style: none; 
+            padding: 0; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            margin-top: 30px; 
+            gap: 10px;
+        }
+        .keyword-list li { 
+            background-color: #ECEFEF; 
+            color: var(--primary-color); 
+            padding: 8px 16px; 
+            border-radius: 20px; 
+            font-weight: 500; 
+            font-size: 0.9em; 
+        }
+        
+        .external-links { 
+            margin-top: 40px; 
+            padding: 25px; 
+            border-top: 2px solid var(--secondary-color); 
+            background-color: var(--bg-card);
+            border-radius: 8px;
+        }
+        .external-links h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        .external-links ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0;
+        }
+        .external-links li { 
+            margin-bottom: 12px; 
+        }
+        .external-links a { 
+            color: var(--secondary-color); 
+            text-decoration: none; 
+            font-weight: 500; 
+            border-bottom: 1px solid var(--secondary-color); 
+            padding-bottom: 1px; 
+        }
+        .external-links a:hover { 
+            color: var(--accent-color); 
+            border-bottom-color: var(--accent-color); 
+        }
+
+        footer { 
+            background-color: var(--primary-color); 
+            color: #fff; 
+            text-align: center; 
+            padding: 40px 20px; 
+            font-size: 0.9em; 
+            margin-top: 50px;
+        }
+        footer p {
+            margin: 5px 0;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { flex-direction: column; gap: 0; }
+            .calculator-box { padding: 25px; }
+            .content-section { padding: 30px 20px; }
+            header h1 { font-size: 1.8em; }
+            .hero h2 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">2026년 개인회생금액 완벽 분석 가이드</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h2>개인회생금액 계산기 및 합리적인 절세 방안</h2>
+                <p>소득과 부채 상황에 맞추어 변제율을 개선하고 최저 수준의 변제 금액을 직접 예측해 보세요.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="calculator-box">
+                <h3>개인회생 예상 납입금 및 변제금 간이 계산기</h3>
+                <form id="rehab-calc-form" onsubmit="return false;">
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="calc-name">이름</label>
+                            <input type="text" id="calc-name" placeholder="성함을 입력하세요">
+                        </div>
+                        <div class="form-column">
+                            <label for="calc-phone">연락처</label>
+                            <input type="tel" id="calc-phone" placeholder="휴대폰 번호 입력">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="calc-income">월 소득 (세후 기준, 만원 단위)</label>
+                            <input type="number" id="calc-income" placeholder="예: 250" required>
+                        </div>
+                        <div class="form-column">
+                            <label for="calc-dependents">부양가족 수 (본인 제외)</label>
+                            <select id="calc-dependents">
+                                <option value="0">0명 (1인 가구)</option>
+                                <option value="1">1명 (2인 가구)</option>
+                                <option value="2">2명 (3인 가구)</option>
+                                <option value="3">3명 이상 (4인 가구 이상)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-column">
+                            <label for="calc-debt">총 채무액 (만원 단위)</label>
+                            <input type="number" id="calc-debt" placeholder="예: 5000" required>
+                        </div>
+                        <div class="form-column">
+                            <label for="calc-region">거주 지역</label>
+                            <select id="calc-region">
+                                <option value="seoul">서울특별시</option>
+                                <option value="gyeonggi">경기도 및 인천광역시</option>
+                                <option value="busan">부산광역시</option>
+                                <option value="daegu">대구광역시</option>
+                                <option value="gwangju">광주광역시</option>
+                                <option value="daejeon">대전광역시</option>
+                                <option value="ulsan">울산광역시</option>
+                                <option value="others">기타 지방 법원 관할지역</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" class="calc-btn" onclick="calculateRehab()">예상 개인회생금액 모의 계산 실행</button>
+                </form>
+
+                <div class="calc-result" id="calc-result">
+                    <h4>모의 분석 계산 결과 안내</h4>
+                    <p>신청 가구 형태: <span id="res-family"></span></p>
+                    <p>2026년 기준 인정 생계비: <span id="res-living-cost"></span></p>
+                    <p>월 예상 변제 금액 (가용소득): <span id="res-monthly-pay"></span></p>
+                    <p>총 36개월 기준 예상 납입금액: <span id="res-total-pay"></span></p>
+                    <p>예상 채무 감면율 (원금 기준): <span id="res-reduction"></span></p>
+                    <p style="font-size: 0.85em; color: #64748B; margin-top: 15px;">이 계산은 입력 값을 기준으로 한 단순 시뮬레이션이며 신청자의 자산 상태, 주거 비용 부담 정도, 거주 지역 법원의 심사 경향에 따라 최종 변제 계획안의 실제 금액은 변경될 수 있습니다.</p>
+                </div>
+            </section>
+        </div>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>개인회생금액 정의와 2026년도 사법 제도 환경 변화</h2>
+                <p>
+                    개인회생제도에서 말하는 개인회생금액은 크게 두 가지의 현실적인 개념으로 분리되어 설명됩니다. 첫 번째는 채무자가 회생 신청을 한 후 법원의 인가를 거쳐 매월 약 36개월에서 60개월 동안 성실하게 납부해야 하는 실제 변제금이며, 두 번째는 회생 제도를 성공적으로 이행하기 위해 절차 초기 단계에 들어가는 인지대, 송달료, 대리인 선임 등을 망라한 진행 절차 및 비용을 의미합니다. 2026년 현재 고물가와 불안정한 금리 환경의 영향으로 과도한 금융 채무를 이기지 못해 고통을 겪는 다수의 근로자 및 자영업자들이 늘어남에 따라 법원의 개인회생 제도 운용 역시 보다 정교하고 개별화된 심사 기준을 도입하는 방향으로 전환되고 있습니다.
+                </p>
+                <p>
+                    이 제도를 진행할 때 가장 핵심적인 질문 중 하나는 결국 변제금이 매달 얼마 수준으로 결정되는가 하는 점입니다. 가용소득 이론에 기반하여 산출되는 월 변제 금액은 신청인이 취득하는 월 실질 소득에서 법정 최저생계비를 차감하고 남은 나머지를 투입하도록 강제되어 있습니다. 여기서 2026년 보건복지부가 고시한 기준 중위소득을 바탕으로 계산되는 법원 적용 생계비율은 신청인의 가구 규모에 따라 달라지기 때문에 본인이 부양하는 인원의 산정 기준을 정확히 확인하는 조치가 요구됩니다.
+                </p>
+
+                <h3>2026년 가구원수별 최저생계비 고시 기준 표</h3>
+                <div class="data-visualization">
+                    <h4>2026년 법원 공인 기준 개인회생 가구원수별 법정 최저생계비</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>가구원 수 구분</th>
+                                <th>2026년 기준 중위소득</th>
+                                <th>법원 인정 생계비 (중위소득 60%)</th>
+                                <th>의미 및 가용 한도</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1인 가구</td>
+                                <td>약 2,350,000원</td>
+                                <td>약 1,410,000원</td>
+                                <td>본인 단독 가구 적용</td>
+                            </tr>
+                            <tr>
+                                <td>2인 가구</td>
+                                <td>약 3,880,000원</td>
+                                <td>약 2,328,000원</td>
+                                <td>외벌이 부부 또는 한부모 기준</td>
+                            </tr>
+                            <tr>
+                                <td>3인 가구</td>
+                                <td>약 4,950,000원</td>
+                                <td>약 2,970,000원</td>
+                                <td>자녀 혹은 노부모 부양 포함 시</td>
+                            </tr>
+                            <tr>
+                                <td>4인 가구</td>
+                                <td>약 6,010,000원</td>
+                                <td>약 3,606,000원</td>
+                                <td>전형적인 다가족 거주 세대</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>개인회생 대리인 선임 시 발생하는 가격대와 수임 비용 비교</h3>
+                <p>
+                    절차를 직접 진행하는 나홀로 소송의 경우 서류 작성의 실수와 보정 명령에 제때 대처하지 못해 기각되거나 불리한 변제계획안을 그대로 수용하게 될 단점이 있습니다. 이 때문에 대다수의 채무자는 전문 변호사나 법무사 같은 대리인 업체를 고용하여 사건을 위임하게 되는데 이때 지불하는 컨설팅 및 대리 비용 또한 신청인의 결정적인 재정 고려 대상이 됩니다. 법조 시장에서의 평균적인 선임 가격은 통상 채권자의 수와 숨겨진 은닉 자산 유무에 따라 적게는 150만 원선에서 많게는 300만 원 선까지 견적이 분포되어 있습니다.
+                </p>
+                <p>
+                    비용적인 부담 때문에 단순히 시장에서 가장 싼곳이나 과도하게 저렴한곳만을 고집하다 보면 복잡다단한 보정 서류 작성 단계에서 관리가 소홀해지거나 추가 보정 건마다 수수료를 별도로 요구하는 등의 부작용이 발생할 수도 있습니다. 최근에는 신규 신청 유치를 위해 다양한 인터넷 온라인 사이트나 앱, 모바일 어플 상에서 자극적인 무료 진단 이벤트를 열어 수임료 할인, 무이자 할부 분납 혜택을 전면 배치하는 추세입니다. 그러나 무엇보다 중요한 것은 채무자가 감당해야 하는 면책 성공률과 매달 최종 납부하게 될 평균 변제금 한도를 조금이라도 낮출 수 있는 실력 있는 브랜드를 선별하여 후기를 살피는 것입니다.
+                </p>
+
+                <h3>전국 지역별 법원의 업무 진행 강도 및 심사 강도의 차이점</h3>
+                <p>
+                    거주하거나 근무하고 있는 지역의 관할 법원마다 실무적인 가이드라인과 변제금 심사 기준이 미세하게 달라집니다. 일례로 서울회생법원의 경우에는 20대와 30대 청년층 채무자에 대해 주식 거래나 가상화폐 투자로 인해 누적된 채무 원금을 변제 책임에서 대폭 제외해 주는 등의 신속 전향적인 태도를 장점으로 보여주는 편입니다. 반면에 수원회생법원이나 인천지방법원을 비롯한 경기도권의 일부 법원, 그리고 지방의 대구지방법원이나 대전지방법원 등의 경우에는 채무 발생 경위와 주거용 임차 자산 가치 산정에 대해 다소 꼼꼼하고 엄격하게 자료 조사를 시행하기 때문에 예상보다 더 많은 개인회생금액을 변제하도록 요구받기도 합니다.
+                </p>
+                <p>
+                    이러한 점 때문에 성남, 고양, 용인, 부천, 안산, 남양주, 청주, 전주, 천안, 포항, 김해, 광주, 울산, 부산 등 전국 곳곳의 신뢰도 높은 법률 대리인들은 신청인의 등본상 거주지와 주된 직장의 주소지 중 본인에게 가장 유리한 법원을 택해 관할 지정을 설계하고 있으며 이를 위해서는 전문 컨설팅이 선행되어야만 법률적 실효성을 누릴 수 있습니다.
+                </p>
+
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <h4>서울/경기 수도권 법원 동향</h4>
+                        <p>서울회생법원은 전담 판사 체제가 자리 잡고 있어 보정 명령의 기간이 짧고 신속합니다. 주식 및 비트코인 실패 채무에 관해 상대적으로 완화된 기준을 적용해 줍니다.</p>
+                    </div>
+                    <div class="grid-item">
+                        <h4>지방 주요 광역시 법원 동향</h4>
+                        <p>부산, 대구, 대전 등 지방 법원은 주거 비용 공제율이 수도권 대비 보수적입니다. 자영업자의 경우 일일 현금 유입 소득 증명을 더 명확히 할 필요가 있습니다.</p>
+                    </div>
+                </div>
+
+                <h3>커뮤니티 내돈내산 실제 후기와 검색 데이터 기반 가입 분석</h3>
+                <p>
+                    신뢰성 있는 비용 산정 정보를 발굴하고자 디시인사이드, 보배드림, 펨코, 에펨코리아와 같은 온라인 유력 커뮤니티의 관련 포럼을 조회하면 직접적인 개인회생 진행 후기들이 많이 포착됩니다. 이용자들의 주된 경험담에 따르면 지나치게 싼 가격만을 강조하며 선금을 일시불로 유도하거나 사은품이나 현금지원 혜택을 지나치게 홍보하는 곳은 초기 진행 도중 추가 보정 명령 처리를 무단으로 미루는 경우가 잦았다고 경고합니다. 대신에 토스, 카카오톡 상담, 혹은 구글 및 네이버 검색을 적극 활용해 꼼꼼하게 수임료 납부 방식을 꼼꼼히 분할해 주는 정통 브랜드를 선택하는 편이 훨씬 더 신뢰할 만한 선택이었다고 내돈내산 수기를 남깁니다.
+                </p>
+                <p>
+                    더 나아가 최근에는 단순한 인터넷 정보 수집의 경계를 뛰어넘어 제미나이(Gemini)나 챗지피티(ChatGPT)와 같은 진화된 지능형 AI 기반 검색 및 전문 분석 엔진을 통해 본인의 직업, 가용 수입, 총부채 비율을 질의하고 이에 맞춤형으로 준비할 자료 서류의 종류를 우선 점검하는 현명한 금융 소비 행동도 관찰되고 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>자주 묻는 질문 (개인회생금액 핵심 FAQ)</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>개인회생금액 산정 시 추가 생계비는 어느 수준까지 반영이 될까요?</h4>
+                        <p>법정 기본생계비 이외에도 신청인 본인이나 가족 구성원의 만성 난치 질환 치료 목적으로 들어가는 정기적 병원 비용, 임대차 계약서에 근거하여 실지출되는 과도한 주거 월세 비용, 자녀의 공교육 교육 비용 등이 입증 자료에 따라 합당하다고 인정될 경우에 한하여 추가 생계비 승인이 떨어져 변제금 하향 조정 혜택을 누릴 수 있습니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>수임비용 분할 시 이자나 추가 수수료 같은 요인이 따라붙나요?</h4>
+                        <p>일반적인 대리인 사무실에서는 파산 위기에 처한 신청인의 재정 사정을 감안하여 통상 수임료를 3개월에서 최대 6개월에 걸쳐 무이자로 분납해 주는 분할 납부 편의 제도를 운용 중입니다. 계약 시점에 수임 장부 상 이자 여부나 예외 보정에 따라 추가되는 특수 수임 조건이 사전에 서면 기재되었는지 약정 사항을 정밀 분석하는 것이 바람직합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>채무 일부를 갚던 도중 소득이 극도로 줄거나 실직하면 변제 금액 조정이 되나요?</h4>
+                        <p>회생 인가 결정이 완료된 이후에 예상치 못한 급작스러운 실직이나 중증 질환 진단을 입어 월 수입이 최저생계비 하한선 미만으로 전락했다면 법원에 기존의 변제 계획안을 대폭 완화하거나 기간을 조정하는 내용의 변제계획 특별 변경 신청서를 제기할 수 있으며 이것이 불가능할 경우 최악의 대안으로 회생을 폐지한 뒤 파산으로 이관하는 연계 방법도 고려 가능합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>개인회생 신청을 하면 신용카드 사용이나 직장 생활에 불이익은 없나요?</h4>
+                        <p>개인회생 신청과 동시에 사건번호가 부여되며 채권 추심이나 압류가 금지되어 일상생활을 온전히 보전할 수 있습니다. 다만 정식 면책이 마무리될 때까지는 주거래 금융기관을 통한 신용 대출이나 자격 카드의 사용은 전면 정지되나 일반적인 공무원 신분 유지나 민간 기업 내의 정상 직장 생활에 법적인 인사 불이익을 가하는 조치는 법률로써 엄격히 무효화되어 있으므로 염려치 않으셔도 무방합니다.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>소득 수준이 일정하지 않은 자영업자나 프리랜서도 신청이 될까요?</h4>
+                        <p>근로 계약을 맺지 않은 일용직 근로자, 소득의 편차가 존재하는 프리랜서 및 개인 영업 매장 자영업자 역시 1년 기준 종합 매출 기록과 비용 공제 수식을 철저하게 대조하여 월 평균 영업 소득을 합리적으로 환산해 입증할 수 있다면 아무런 격차 없이 법적 자격을 얻어 무난히 진행이 가능합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>함께 많이 찾는 관련 핵심 검색 키워드</h2>
+                <ul class="keyword-list">
+                    <li>#개인회생금액</li>
+                    <li>#개인회생비용</li>
+                    <li>#개인회생예상금액</li>
+                    <li>#변제금계산</li>
+                    <li>#2026개인회생</li>
+                    <li>#수임료분납</li>
+                    <li>#개인회생상담</li>
+                    <li>#회생장단점</li>
+                    <li>#무료개인회생견적</li>
+                    <li>#개인회생면책후기</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container external-links">
+                <h4>신뢰성 높은 개인회생 및 공신력 법률 정보처</h4>
+                <ul>
+                    <li><a href="https://recoverybylawsm.koreahankang.com" target="_blank" rel="nofollow noopener">개인회생 통합 법률 구제 지원 정보센터</a> : 전국 법원별 심사 경향 및 예상 소송 비용 산정 공식 해설 안내</li>
+                    <li><a href="https://www.scourt.go.kr" target="_blank" rel="nofollow noopener">대한민국 대법원 전국 전자소송 시스템</a> : 개인회생 사건 본인 진행 상황 및 실시간 보정 상태 법률 조회</li>
+                    <li><a href="https://www.moj.go.kr" target="_blank" rel="nofollow noopener">대한민국 법무부 공식 웹포털</a> : 서민 채무자 구조 및 파산제도 정비 계획, 최신 법률 개정 사항 수록</li>
+                    <li><a href="https://www.klac.or.kr" target="_blank" rel="nofollow noopener">대한민국 대한법률구조공단</a> : 기초생활 수급권자 등 취약 계층 무료 개인회생 지원 법률 서비스 접수</li>
+                    <li><a href="https://namu.wiki/w/%EA%B0%9C%EC%9D%B8%ED%9E%8C%EC%83%9D" target="_blank" rel="nofollow noopener">나무위키 개인회생 백과사전 항목</a> : 실무 및 세부 행정 절차와 구비 서류 준비 요령 총망라</li>
+                </ul>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 토글 기능
+        document.querySelectorAll('.faq-item h4').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // 2026 개인회생 변제금 시뮬레이터 로직
+        function calculateRehab() {
+            const income = parseFloat(document.getElementById('calc-income').value);
+            const dependents = parseInt(document.getElementById('calc-dependents').value);
+            const debt = parseFloat(document.getElementById('calc-debt').value);
+            
+            if (isNaN(income) || income <= 0) {
+                alert('올바른 월 소득 수치를 만원 단위로 입력해 주세요.');
+                return;
+            }
+            if (isNaN(debt) || debt <= 0) {
+                alert('올바른 총 채무 금액을 만원 단위로 입력해 주세요.');
+                return;
+            }
+
+            // 2026년 기준 60% 중위소득 기준액 (만원 단위 근사치)
+            let minLivingCost = 141; // 1인
+            let familyText = "1인 가구 (본인)";
+            if (dependents === 1) {
+                minLivingCost = 232;
+                familyText = "2인 가구 (본인 + 부양가족 1인)";
+            } else if (dependents === 2) {
+                minLivingCost = 297;
+                familyText = "3인 가구 (본인 + 부양가족 2인)";
+            } else if (dependents >= 3) {
+                minLivingCost = 360;
+                familyText = "4인 가구 이상";
+            }
+
+            // 월 변제금 (소득 - 생계비)
+            let monthlyPayment = income - minLivingCost;
+            if (monthlyPayment < 0) {
+                monthlyPayment = 0;
+            }
+
+            const totalPayment = monthlyPayment * 36;
+            let reductionRate = 0;
+            
+            if (debt > 0) {
+                const remainDebt = debt - totalPayment;
+                if (remainDebt > 0) {
+                    reductionRate = (remainDebt / debt) * 100;
+                } else {
+                    reductionRate = 0; // 전액 변제 혹은 감면 없음
+                }
+            }
+
+            document.getElementById('res-family').innerText = familyText;
+            document.getElementById('res-living-cost').innerText = minLivingCost.toLocaleString() + "만 원";
+            
+            if (monthlyPayment <= 0) {
+                document.getElementById('res-monthly-pay').innerText = "법정 기준 미달 (상담 권장)";
+                document.getElementById('res-total-pay').innerText = "산정 불가";
+                document.getElementById('res-reduction').innerText = "가용소득 부족으로 파산 절차가 유리할 수 있습니다.";
+            } else {
+                document.getElementById('res-monthly-pay').innerText = Math.round(monthlyPayment).toLocaleString() + "만 원";
+                document.getElementById('res-total-pay').innerText = Math.round(totalPayment).toLocaleString() + "만 원";
+                document.getElementById('res-reduction').innerText = Math.round(reductionRate) + "% 감면 예상";
+            }
+
+            document.getElementById('calc-result').style.display = 'block';
+        }
+    </script>
+  
